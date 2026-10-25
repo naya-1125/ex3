@@ -1,27 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+html {
+  scroll-behavior: smooth; /* 平滑滾動動效 */
+}
+
 body{
     padding: 0;
     margin: 0;
     font-size: 1.2rem;
-    color:rgba(87, 117, 144, 1);
+    background:rgb(255, 217, 177);
+    color:rgb(255, 255, 255);
 
     font-family: "Roboto", sans-serif;
 }
 
 ::selection{
-    background: rgba(87, 117, 144, 1);
+    background: rgba(255, 137, 1, 1);
     color: rgba(255, 255, 255, 1);
 }
 
 a{
     text-decoration: none;
-    color: rgba(87, 117, 144, 1);
+    color: rgba(255, 137, 1, 1);
     display: inline-block;
 }
 
-a:hover{
-    color: rgba(87, 117, 144, 1);
+a:hover {
+  text-decoration: none !important;
+  border-bottom: none !important; /* 避免其他地方設定了 border-bottom 偽裝成底線 */
+  color: rgba(255, 255, 255, 0.655);
 }
 
 /*header*/
@@ -50,9 +57,15 @@ header{
 .logo img{
     width: 100%;
     margin: auto;
-    background: rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255,0);
 	border-radius: 50%;
 }
+
+.logo a {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  }
 
 /*nav*/
 nav{
@@ -64,17 +77,25 @@ nav{
 nav a{
     padding: 50px;
     font-weight: bold;
+
+    /* ▼ 獨立設定 nav 文字顏色與樣式（不影響全域和其他連結） ▼ */
+  color: #FFFFFF;              /* 設定為純白（或你要的自訂顏色） */
+  text-decoration: none;       /* 平常無底線 */
+  text-shadow: 0 2px 8px rgba(255, 137, 1, 0.4);
+  display: inline-block;       /* 確保 padding 與排版穩定 */
 }
 
 nav a:hover{
-    text-decoration: underline;
+text-decoration: none;       /* 移上去時不要出現底線 */
+  color: rgba(255, 255, 255, 0.7); /* 移上去時呈現微透明的高級半透明感 */
+  /* 如果希望移上去變某個特定顏色，可改為 color: #xxx; */
 }
 
 /*hero*/
 .hero{
     position: relative;   
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     background:rgba(87, 117, 144, .2);
 }
 
@@ -85,14 +106,37 @@ nav a:hover{
     object-position:bottom;
 }
 
-.hero h1{
-    position: absolute;
-    top:20%;
-	left:50%;
-	transform: translate(-50%, -50%);
+.hero h1 {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-    font-size: 150px;
-    color: rgba(87, 117, 144, 1);
+  /* 螢幕小於時至少 48px，大螢幕最大 120px，中間隨視窗等比縮放 */
+  font-size: clamp(48px, 8vw, 120px);
+
+  color: rgb(255, 255, 255);
+  text-shadow: 0 2px 8px rgba(255, 137, 1, 0.4);
+  white-space: nowrap;
+}
+
+.hero p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+
+  /* 1. 放大英文（建議 28px ~ 36px，也可以用 clamp 動態縮放） */
+  font-size: clamp(18px, 2.5vw, 32px);
+
+  /* 2. 強制英文字不換行 */
+  white-space: nowrap;
+
+  /* 3. 建議改為白色或加陰影，解決黃色在鬆餅背景看不清的問題 */
+  color: rgb(255, 255, 255);
+  text-shadow: 0 2px 8px rgba(255, 137, 1, 0.4);
+
 }
 
 /*section*/
@@ -108,7 +152,7 @@ section{
 
 section h1{
     flex:0 0 100%;
-    color:rgba(87, 117, 144, 1);
+    color:rgba(255, 137, 1, 1);
     text-align: center;
 }
 
@@ -122,7 +166,7 @@ section h1{
 .card img{
 	width:80%;
 	border-radius:50%;
-	border:solid 1px rgba(87, 117, 144, 1);
+	border:solid 1px rgba(255, 137, 1, 1);
     
 	-ms-transform: rotate(0deg); /* IE 9 */
     -webkit-transform: rotate(0deg); /* Safari */
@@ -143,11 +187,13 @@ article{
 	flex:0 0 100%;
 	margin:auto;
     margin-bottom: 30px;
-    border:solid 4px rgba(87, 117, 144, 1);
+    border:solid 4px rgba(255, 137, 1, 1);
     border-radius: 50px;
     box-sizing: border-box;
 
     display:flex;
+    /* ▼ 加上這行，把超出圓角的圖片遮罩切掉 ▼ */
+  overflow: hidden;
 }
 
 section > a:nth-of-type(2n) article{
@@ -155,8 +201,8 @@ section > a:nth-of-type(2n) article{
 }
 
 article:hover{
-    border:solid 8px rgba(87, 117, 144, 1);
-    background:rgba(87, 117, 144, .2);
+    border:solid 8px rgba(255, 137, 1, 1);
+    background:rgba(255, 137, 1, .2);
 }
 
 .a_left{
@@ -177,7 +223,7 @@ article:hover{
 	flex:1;
 	padding: 4%;
 	box-sizing:border-box;
-	color:rgba(87, 117, 144, 1);
+	color:rgba(255, 137, 1, 1);
 	text-align:left;
     line-height: 2rem;
 }
@@ -212,33 +258,79 @@ body{
 }
 
 /*logo*/
-.logo{
+.logo {
+  text-align: center;
+  margin-top: 20px;       /* ▼ 加上這行：數值越大，logo 就會越往下移 ▼ */
+}
+
+.logo img {
+  width: 30%;
+  margin: auto;
+  display: block;         /* 確保 margin: auto 置中能完全生效 */
+}
+
+nav {
+    width: 100% !important;
+    text-align: center !important;  /* 消除電腦版的 text-align: right */
+    display: flex !important;
+    justify-content: center !important; /* 使用 flex 水平完全居中 */
+    align-items: center;
+    gap: 16px;                          /* 用 gap 控制三個選項之間的距離，最均勻 */
+    padding: 0px 0;
+    margin: 0 auto;
+    float: none !important;
+  }
+
+  /* 3. 重設 nav 裡面的 a 標籤 */
+  nav a {
+    display: inline-block;
+    padding: 6px 10px !important;       /* 縮小手機版 padding，避免把選項擠出螢幕 */
+    font-size: 15px;
+    color: #FFFFFF;
+    text-decoration: none;
+    text-shadow: 0 2px 6px rgba(255, 137, 1, 0.4);
+  }
+
+  /* 調整 Hero 容器高度 */
+  .hero {
+    height: 70vh;             /* 適當拉高，留出足夠垂直空間放文字 */
+    position: relative;
+  }
+
+  /* 將 h1 往下拉到 nav 下方（避開頂部的 About/Product/Contact） */
+  .hero h1 {
+    position: absolute;
+    top: 54%;                 /* 往下推，原本是 30%~40%，改成 60% 就能避開 nav */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
     text-align: center;
-}
 
-.logo img{
-    width: 30%;
-    margin: auto;
-}
+    font-size: 38px;          /* 適合手機閱讀的大小 */
+    line-height: 1.35;        /* 換行後的行距，避免兩行字撞在一起 */
+    color: #FFFFFF;
+    text-shadow: 0 2px 8px rgba(255, 137, 1, 0.4);
+    white-space: normal;      /* 允許 HTML 的 <br> 正常換行 */
+    margin: 0;
+  }
 
-/*nav*/
-nav{
+  /* 英文副標題跟隨在中文下方 */
+  .hero p {
+    position: absolute;
+    top: 60%;                 /* 排在 h1 換行後的正下方 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
     text-align: center;
-}
 
-nav a{
-    padding: 10px;
-}
-
-/*hero*/
-.hero{
-    height: 60vh;
-}
-
-.hero h1{
-    top:40%;
-    font-size: 80px;
-}
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 1.5px;
+    color: #FFFFFF;
+    text-shadow: 0 2px 8px rgba(255, 137, 1, 0.4);
+    margin: 0;
+  }
 
 /*card*/
 .card{
