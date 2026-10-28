@@ -139,6 +139,31 @@ text-decoration: none;       /* 移上去時不要出現底線 */
 
 }
 
+/*marquee*/
+.marquee{
+    width: 100%;
+    overflow: hidden;
+    background: rgba(255, 137, 1, 1);
+    color: rgba(255, 255, 255, 1);
+    padding: 10px 0;
+}
+
+.marquee-track{
+    display: flex;
+    width: max-content;
+    animation: marquee 5s linear infinite;
+}
+
+@keyframes marquee{
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
 /*section*/
 section{
     display:flex;
