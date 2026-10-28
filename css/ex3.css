@@ -108,7 +108,7 @@ text-decoration: none;       /* 移上去時不要出現底線 */
 
 .hero h1 {
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
 
